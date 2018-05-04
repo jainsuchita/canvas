@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: #333;
+        }
+
+        #canvas_container {
+            width: 1000px;
+            margin: 20px auto;
+        }
+
+        #my_canvas {
+            background: #FFF;
+            border: #999 1px solid;
+        }
+    </style>
+    <script>
+        var bg = new Image();
+        bg.src =  "stars.jpg";
+
+        function initCanvas() {
+            var ctx = document.getElementById('my_canvas').getContext('2d');
+            var cW = ctx.canvas.width, cH = ctx.canvas.height;
+
+
+            function Background(){
+                this.x = 0;
+                this.y = 0;
+                this.width = bg.width;
+                this.height = bg.height;
+
+                this.render = function(){
+                    ctx.drawImage(bg, this.x--, 0);
+                    if(this.x <= -50)
+                    {
+                        //alert(bg.width);
+                        this.x = 0;
+                    }
+                }
+
+            }
+
+            var background = new Background();
+            function animate() {
+                ctx.save();
+                ctx.clearRect(0, 0, cW, cH);
+                
+                background.render();
+                
+                ctx.fillStyle = "orange";
+                ctx.fillRect(50,50,10,10);
+                ctx.restore();
+            }
+
+            var animateInterval = setInterval(animate, 30);
+        }
+
+        window.addEventListener('load', function (event) {
+            initCanvas();
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="canvas_container">
+        <canvas id="my_canvas" width="100" height="159"></canvas>
+    </div>
+</body>
+
+</html>

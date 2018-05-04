@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <title>Rectangles</title>
+
+  <style>
+    body {
+      background: #dddddd;
+    }
+
+    #canvas {
+      background: #eeeeee;
+      border: thin solid #aaaaaa;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id='canvas' width='600' height='400'></canvas>
+
+  <script>
+    var canvas = document.getElementById('canvas'),
+      context = canvas.getContext('2d');
+
+    context.lineWidth = 10;
+
+    context.font = '24px Helvetica';
+    context.fillText('Click anywhere to erase', 175, 40);
+
+    context.strokeRect(75, 100, 200, 200);
+    context.fillRect(325, 100, 200, 200);
+
+    canvas.onmousedown = function (e) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    };
+  </script>
+</body>
+
+</html>
